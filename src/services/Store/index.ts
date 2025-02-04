@@ -24,6 +24,32 @@ class Store {
     this.tasks.push(task);
     return task;
   }
+
+  public updateTask({
+    id,
+    title,
+    completed,
+  }: {
+    id: string;
+    title?: string;
+    completed?: boolean;
+  }): Task {
+    const index = this.tasks.findIndex((t) => t.id === id);
+
+    if (index === -1) {
+      throw new Error("Task not found");
+    }
+
+    const updatedTask = {
+      ...this.tasks[index],
+      ...(title ? { title } : {}),
+      ...(completed ? { completed } : {}),
+    };
+
+    this.tasks[index] = updatedTask;
+
+    return updatedTask;
+  }
 }
 
 export default new Store();
