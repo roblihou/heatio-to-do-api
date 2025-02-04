@@ -42,8 +42,8 @@ class Store {
 
     const updatedTask = {
       ...this.tasks[index],
-      ...(title ? { title } : {}),
-      ...(completed ? { completed } : {}),
+      ...(title !== undefined ? { title } : {}),
+      ...(completed !== undefined ? { completed } : {}),
     };
 
     this.tasks[index] = updatedTask;
