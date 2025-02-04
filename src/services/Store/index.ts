@@ -15,6 +15,15 @@ class Store {
     const initialData = require("./initialData.json");
     this.tasks = initialData.tasks;
   }
+
+  public createTask(task: Task): Task {
+    // As we are allowing the frontend to generate the ID, we need to check for uniqueness before adding the task
+    if (this.tasks.find((t) => t.id === task.id)) {
+      throw new Error("Task with that ID already exists");
+    }
+    this.tasks.push(task);
+    return task;
+  }
 }
 
 export default new Store();
