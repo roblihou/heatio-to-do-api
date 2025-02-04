@@ -50,6 +50,20 @@ class Store {
 
     return updatedTask;
   }
+
+  public deleteTasks() {
+    this.tasks = [];
+  }
+
+  public deleteTask({ id }: { id: string }) {
+    const index = this.tasks.findIndex((t) => t.id === id);
+
+    if (index === -1) {
+      throw new Error("Task not found");
+    }
+
+    this.tasks.splice(index, 1);
+  }
 }
 
 export default new Store();
